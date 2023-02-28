@@ -1,19 +1,34 @@
+import java.io.IOException;
+import java.util.InputMismatchException;
 import  java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter the temperature: ");
-        double temperature = input.nextDouble();
+        double temperature = 0;
+        boolean inputValid = false;
+        String unit = " ";
 
-        System.out.print("Enter the unit (C, F, or K): ");
-        String unit = input.next().toUpperCase();
+        // Get temperature value from user input
+        while (!inputValid) {
+            try {
+                System.out.print("Enter the temperature value: ");
+                temperature = scanner.nextDouble();
+                inputValid = true;
+                System.out.print("Enter the unit (C, F, or K): ");
+                 unit = scanner.next().toUpperCase();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                scanner.nextLine();
+            }
+
+        }
 
         Temperature temperatureConverter = new Temperature(temperature, unit);
-
         System.out.println("Temperature in Celsius: " + temperatureConverter.toCelsius());
         System.out.println("Temperature in Fahrenheit: " + temperatureConverter.toFahrenheit());
         System.out.println("Temperature in Kelvin: " + temperatureConverter.toKelvin());
+
 
     }
 }

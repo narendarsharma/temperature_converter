@@ -1,6 +1,7 @@
 import java.util.Scanner;
-public class Temperature {
-    private double temperature;
+
+public class Temperature{
+   private double temperature;
     private String unit;
 
     public Temperature(double temperature, String unit) {
